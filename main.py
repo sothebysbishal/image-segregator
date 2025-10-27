@@ -11,6 +11,7 @@ classifier = None
 
 class ImageURL(BaseModel):
     url: str
+    accessKey: str
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -54,6 +55,8 @@ def classify_by_url(req: ImageURL):
         )
     }
     try:
+        if req.accessKey != "9Lx7fV_q2Y6sBvD3G1hK8wZ0aR5mTnUcO4pSjHq":
+            raise HTTPException(status_code=403, detail="You are not authorized to use this API")
         response = requests.get(req.url, headers=headers, timeout=10)
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
