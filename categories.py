@@ -34,21 +34,51 @@ CATEGORIES = [
 ]
 
 CATEGORY_MAP = {
-    "Indoor": [
-        "bedroom", "bathroom", "kitchen", "living room", "dining room", "office", "garage", "storage room", "lobby",
+    "Bedroom": [
+        "bedroom", "master bedroom", "guest bedroom", "dressing room",
+        "bed room", "master suite", "primary bedroom", "guest room",
     ],
-    "Outdoor": [
-        "balcony", "terrace", "outdoor space",
+    "Bathroom": [
+        "bathroom", "powder room", "washroom", "restroom", "toilet", "lavatory", "wc", "bath",
+    ],
+    "Kitchen": [
+        "kitchen", "pantry", "kitchenette", "cookhouse", "galley",
+    ],
+    "Living Room": [
+        "living room", "lounge", "family room", "sitting room", "great room",
+    ],
+    "Dining Room": [
+        "dining room", "dining area", "breakfast nook", "breakfast area",
+    ],
+    "Office": [
+        "office", "study", "study room",
+    ],
+    "Garage": [
+        "garage", "carport", "parking garage",
+    ],
+    "Storage": [
+        "storage room", "storage",
+    ],
+    "Balcony": [
+        "balcony", "terrace", "veranda", "verandah",
+    ],
+    "Patio": [
+        "patio", "courtyard patio", "outdoor seating",
+    ],
+    "Rooftop": [
+        "rooftop",
     ],
     "Amenities": [
-        "clubhouse", "reception", "game room", "arcade", "cinema room", "theater room", "music room", "patio",
+        "clubhouse", "reception", "game room", "arcade", "cinema room", "theater room", "music room",
         "wine cellar", "bar", "private lounge", "cigar room", "karaoke room", "conference hall",
-        "banquet hall", "gallery", "art studio",  "meeting room", "home theater",  "library", "walk-in closet", "wardrobe", "dressing room", "laundry room", 
+        "banquet hall", "gallery", "art studio",  "meeting room", "home theater",  "library", "walk-in closet", "wardrobe", "laundry room", 
         "swimming pool", "infinity pool", "jacuzzi", "spa", "sauna", "steam room", "outdoor shower",
         "indoor pool", "cold plunge", "barbecue area", "fire pit", "gym", "fitness center", "basketball court", "football field", "tennis court", "squash court",
         "golf simulator", "bowling alley", "yoga room", "boxing ring", "sky lounge", "rooftop bar", "helipad", "private elevator", "atrium", "balcony with view",
         "observation deck", "sunroom", "conservatory",  "kids play area", "nursery", "toy room", "study area",  "servant room", "maid’s quarters", "security room", 
-        "attic", "maintenance room", "storage"
+        "attic", "maintenance room",
+        "staircase", "hallway", "corridor", "foyer", "lobby", "basement", "utility room",
+        "deck", "courtyard", "garden", "backyard", "front yard", "driveway", "parking lot", "porch", "outdoor lounge"
     ],
-    "Other": ["others"]
+    "Other": ["other"]
 }
