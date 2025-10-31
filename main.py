@@ -38,7 +38,7 @@ def classify_image(image: Image.Image):
     label = top["label"]
     score = top["score"]
 
-    if score < 0.25:
+    if score < 0.20:
         return {"label": "unknown", "category": "Other", "confidence": round(score * 100, 2)}
 
     category = get_category(label)

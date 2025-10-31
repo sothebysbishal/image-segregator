@@ -36,16 +36,18 @@ CATEGORIES = [
 CATEGORY_MAP = {
     "Bedroom": [
         "bedroom", "master bedroom", "guest bedroom", "dressing room",
-        "bed room", "master suite", "primary bedroom", "guest room",
+        "bed room", "master suite", "primary bedroom", "guest room", "bedroom with view"
     ],
     "Bathroom": [
         "bathroom", "powder room", "washroom", "restroom", "toilet", "lavatory", "wc", "bath",
     ],
-    "Kitchen": [
-        "kitchen", "pantry", "kitchenette", "cookhouse", "galley",
-    ],
     "Living Room": [
-        "living room", "lounge", "family room", "sitting room", "great room",
+        "living room", "lounge", "family room", "sitting room", "great room", 
+        "open plan living", "living area", "open space", "main hall"
+    ],
+    "Kitchen": [
+        "kitchen", "pantry", "kitchenette", "cookhouse", "galley", 
+        "open kitchen", "chef’s kitchen", "island kitchen"
     ],
     "Dining Room": [
         "dining room", "dining area", "breakfast nook", "breakfast area",
