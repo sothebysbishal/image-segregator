@@ -6,7 +6,7 @@
 
 ### If you’re using a virtual environment, activate it first:
 
-`source venv/bin/activate`
+`source .venv/bin/activate`
 
 ### To run this project simply run
 

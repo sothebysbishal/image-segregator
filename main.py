@@ -5,7 +5,7 @@ from PIL import Image
 import requests
 from io import BytesIO
 from contextlib import asynccontextmanager
-from categories import CATEGORIES, CATEGORY_MAP
+from categories import CATEGORIES, CATEGORY_MAP, INDOOR_LABELS, OUTDOOR_LABELS
 
 classifier = None
 
@@ -32,6 +32,16 @@ def get_category(label: str):
     return "Other"
 
 
+def get_indoor_outdoor(label: str):
+    label_lower = label.lower()
+    if label_lower in INDOOR_LABELS:
+        return "indoor"
+    elif label_lower in OUTDOOR_LABELS:
+        return "outdoor"
+    else:
+        return "unknown"
+
+
 def classify_image(image: Image.Image):
     results = classifier(image, candidate_labels=CATEGORIES)
     top = results[0]
@@ -39,10 +49,45 @@ def classify_image(image: Image.Image):
     score = top["score"]
 
     if score < 0.20:
-        return {"label": "unknown", "category": "Other", "confidence": round(score * 100, 2)}
+        return {
+            "label": "unknown",
+            "category": "Other",
+            "indoor_outdoor": "unknown",
+            "confidence": round(score * 100, 2)
+        }
+
+    # Handle ambiguous cases: if top prediction is indoor but next predictions are outdoor
+    # and combined outdoor confidence is significant, prefer outdoor classification
+    ambiguous_indoor_labels = {"conservatory", "sunroom", "atrium", "gallery"}
+    label_lower = label.lower()
+    
+    if label_lower in ambiguous_indoor_labels and len(results) > 1:
+        # Check top 5 predictions for outdoor indicators and find the best outdoor one
+        outdoor_score = 0
+        best_outdoor = None
+        best_outdoor_score = 0
+        
+        for i in range(1, min(6, len(results))):
+            result_label = results[i]["label"].lower()
+            if result_label in OUTDOOR_LABELS:
+                outdoor_score += results[i]["score"]
+                if results[i]["score"] > best_outdoor_score:
+                    best_outdoor = results[i]
+                    best_outdoor_score = results[i]["score"]
+        
+        # If outdoor predictions have significant combined confidence, use the best outdoor prediction
+        if outdoor_score > 0.15 and best_outdoor is not None:
+            label = best_outdoor["label"]
+            score = best_outdoor["score"]
 
     category = get_category(label)
-    return {"label": label, "category": category, "confidence": round(score * 100, 2)}
+    indoor_outdoor = get_indoor_outdoor(label)
+    return {
+        "label": label,
+        "category": category,
+        "indoor_outdoor": indoor_outdoor,
+        "confidence": round(score * 100, 2)
+    }
 
 
 @app.post("/classify/url")
